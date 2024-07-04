@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script
+      src="https://unpkg.com/htmx.org@2.0.0"
+      integrity="sha384-wS5l5IKJBvK6sPTKa2WZ1js3d947pvWXbPJ1OmWfEuxLgeHcEbjUUA5i9V5ZkpCw"
+      crossorigin="anonymous"
+    ></script>
+  </head>
+  <body>
+    <h1>Wooo</h1>
+    <div id="todo-list">
+      {{range .Todos}} {{block "todo-list-element" .}}
+      <div>{{.Message}}</div>
+      {{end}}{{end}}
+    </div>
+
+    <form hx-swap="beforeend" hx-target="#todo-list" hx-post="/add-todo">
+      <label for="message">Message:</label>
+      <input type="text" name="message" id="message" />
+      <button type="submit">Create Todo</button>
+    </form>
+  </body>
+</html>
